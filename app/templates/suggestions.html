@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    <h2>Customer Suggestions</h2>
+
+    <form method="POST" action="{{ url_for('suggestions') }}">
+        <label for="flavor_suggestion">Flavor Suggestion:</label>
+        <input type="text" id="flavor_suggestion" name="flavor_suggestion" required>
+
+        <label for="allergy_concern">Allergy Concerns:</label>
+        <textarea id="allergy_concern" name="allergy_concern"></textarea>
+
+        <button type="submit">Submit Suggestion</button>
+    </form>
+
+    <h3>Suggestions</h3>
+    <ul>
+        {% for suggestion in suggestions %}
+        <li>
+            <strong>Flavor:</strong> {{ suggestion[1] }} <br>
+            <strong>Allergy Concerns:</strong> {{ suggestion[2] }}
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

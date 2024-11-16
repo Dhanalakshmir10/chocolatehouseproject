@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    <h2>Seasonal Flavors</h2>
+
+    <form method="POST" action="{{ url_for('flavors') }}">
+        <label for="name">Flavor Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" required></textarea>
+
+        <button type="submit">Add Flavor</button>
+    </form>
+
+    <h3>Available Flavors</h3>
+    <ul>
+        {% for flavor in flavors %}
+        <li><strong>{{ flavor[1] }}</strong>: {{ flavor[2] }}</li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

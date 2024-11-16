@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    <h2>Ingredient Inventory</h2>
+
+    <form method="POST" action="{{ url_for('inventory') }}">
+        <label for="name">Ingredient Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="quantity">Quantity (in kg):</label>
+        <input type="number" step="0.01" id="quantity" name="quantity" required>
+
+        <button type="submit">Add Ingredient</button>
+    </form>
+
+    <h3>Current Inventory</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Ingredient</th>
+                <th>Quantity (kg)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ingredient in ingredients %}
+            <tr>
+                <td>{{ ingredient[1] }}</td>
+                <td>{{ ingredient[2] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}
